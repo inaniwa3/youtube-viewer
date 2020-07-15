@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1000">
+  <meta name="description" content="">
+  <title>YouTube Viewer</title>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@inaniwa3">
+  <meta property="og:title" content="YouTube Viewer">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://inaniwa3.github.io/youtube-viewer/">
+  <meta property="og:image" content="https://inaniwa3.github.io/youtube-viewer/og.png">
+
+  <style>
+    #frame {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+    iframe {
+      position: absolute;
+      top: 178px;
+      left: 534px;
+      -moz-transform: rotate(-0.2deg);
+      -o-transform: rotate(-0.2deg);
+      -webkit-transform: rotate(-0.2deg);
+      -ms-transform: rotate(-0.2deg);
+      transform: rotate(-0.2deg);
+    }
+  </style>
+</head>
+<body>
+  <img id="frame" width="1000" height="667" src="room.jpg">
+  <div id="ytplayer"></div>
+
+  <script>
+    let videoId = location.href.split('?')[1];
+    if (!videoId)
+    {
+      videoId = 'VkTA7uWN8S4';
+    }
+
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/player_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubePlayerAPIReady() {
+      player = new YT.Player('ytplayer', {
+        height: '134',
+        width: '235',
+        videoId: videoId,
+        playerVars: {
+          'autoplay': 1,
+          'controls': 0,
+          'fs': 0,
+          'iv_load_policy': 3,
+          'loop': 1,
+          'modestbranding': 1,
+          'rel': 0,
+          'playlist': videoId
+        }
+      });
+    }
+  </script>
+</body>
+</html>
